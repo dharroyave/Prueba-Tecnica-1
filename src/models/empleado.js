@@ -21,10 +21,10 @@ const EmpleadoSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    role:{
+    role: {
         type: String,
-        enum:['admin','empleado'],
-        required:true,
+        enum: ['admin', 'empleado'],
+        required: true,
     }
 });
 

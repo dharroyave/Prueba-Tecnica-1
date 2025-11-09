@@ -3,7 +3,7 @@ import { mongoose } from "mongoose";
 const DepartamentoSchema = new mongoose.Schema({
     codigoDepartamento: {
         type: Number,
-        required: true,        
+        required: true,
     },
     nombreDepartamento: {
         type: String,
@@ -11,4 +11,4 @@ const DepartamentoSchema = new mongoose.Schema({
     }
 });
 
-export const departamentoModel = mongoose.model("Departamento", DepartamentoSchema);
+export const departamentoModel = mongoose.model("departamento", DepartamentoSchema);
