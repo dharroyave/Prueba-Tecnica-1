@@ -1,75 +1,74 @@
 import { empleadoModel } from "../models/empleado.js";
 import bcryptjs from "bcryptjs";
 
-// 1. Método para CREAR un usuario -> POST
-export const postUser = async (request, response) => {
+// 1. Método POST
+export const postEmpleado = async (request, response) => {
     try {
-        //destructuración de request.body
-        const { name, username, email, age, password, role } = request.body;
-        //.hash() para encriptar la contraseña
+        const { codigo, nombre, apellido1, apellido2, codigo_departamento, password, role } = request.body;
         const codedPassword = await bcryptjs.hash(password, 10);
 
-        await userModel.create({
-            name,
-            username,
-            email,
-            age,
+        await empleadoModel.create({
+            codigo,
+            nombre,
+            apellido1,
+            apellido2,
+            codigo_departamento,
             password: codedPassword,
             role
         });
 
         return response.status(201).json({
-            "mensaje": "Usuario creado correctamente"
+            "mensaje": "empleado creado correctamente"
         });
 
     } catch (error) {
         return response.status(400).json({
-            "mensaje": "Ocurrió un error al crear un usuario",
+            "mensaje": "Ocurrió un error al crear un empleado",
             "error": error.message || error
         })
     }
 }
 
-// 2. Método para MOSTRAR todos los usuarios -> GET
-export const getAllUsers = async (request, response) => {
+// 2. Método GET
+export const getAllEmpleados = async (request, response) => {
     try {
-        const allUsers = await userModel.find();
+        const getAllEmpleados = await empleadoModel.find();
         return response.status(200).json({
             "mensaje": "Petición exitosa",
-            "data": allUsers
+            "data": allDepartamentos
         });
 
     } catch (error) {
         return response.status(400).json({
-            "mensaje": "Ocurrió un error al crear producto",
+            "mensaje": "Ocurrió un error al crear empleado",
             "error": error.message || error
         })
     }
 }
 
-// 3. Método para ACTUALIZAR un usuario -> PUT
-export const putUserById = async (request, response) => {
+// 3. Método PUT
+export const putEmpleadoById = async (request, response) => {
     try {
 
     } catch (error) {
         return response.status(400).json({
-            "mensaje": "Ocurrió un error al crear producto",
+            "mensaje": "Ocurrió un error al crear Empleado",
             "error": error.message || error
         })
     }
 }
 
-// 4. Método para ELIMINAR un usuario -> DELETE
-export const deleteUserById = async (request, response) => {
+// 4. Método DELETE
+export const deleteEmpleadoById = async (request, response) => {
     try {
         const idForDelete = request.params.id;
-        await userModel.findByIdAndDelete(idForDelete);
+        await empleadoModel.findByIdAndDelete(idForDelete);
         return response.status(200).json({
-            "mensaje": "Usuario eliminado exitósamente"
+            "mensaje": "Empleado eliminado exitósamente"
         });
     } catch (error) {
         return response.status(400).json({
-            "mensaje": "Ocurrió un error al crear producto",
+            "mensaje": "Ocurrió un error al crear Empleado",
             "error": error.message || error
         })
     }
