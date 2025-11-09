@@ -4,7 +4,7 @@ import bcryptjs from "bcryptjs";
 // 1. Método POST
 export const postEmpleado = async (request, response) => {
     try {
-        const { codigo, nombre, apellido1, apellido2, codigo_departamento, password, role } = request.body;
+        const { codigo, nombre, apellido1, apellido2, email, codigo_departamento, password, role } = request.body;
         const codedPassword = await bcryptjs.hash(password, 10);
 
         await empleadoModel.create({
@@ -12,6 +12,7 @@ export const postEmpleado = async (request, response) => {
             nombre,
             apellido1,
             apellido2,
+            email,
             codigo_departamento,
             password: codedPassword,
             role

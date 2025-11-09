@@ -17,6 +17,10 @@ const EmpleadoSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    email: {
+        type: String,
+        required: true,
+    },
     codigo_departamento: {
         type: Number,
         required: true
