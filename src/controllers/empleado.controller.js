@@ -33,15 +33,15 @@ export const postEmpleado = async (request, response) => {
 // 2. Método GET
 export const getAllEmpleados = async (request, response) => {
     try {
-        const getAllEmpleados = await empleadoModel.find();
+        const allEmpleados = await empleadoModel.find();
         return response.status(200).json({
             "mensaje": "Petición exitosa",
-            "data": allDepartamentos
+            "data": allEmpleados
         });
 
     } catch (error) {
         return response.status(400).json({
-            "mensaje": "Ocurrió un error al crear empleado",
+            "mensaje": "Ocurrió un error al mostrar empleado",
             "error": error.message || error
         })
     }
@@ -50,10 +50,15 @@ export const getAllEmpleados = async (request, response) => {
 // 3. Método PUT
 export const putEmpleadoById = async (request, response) => {
     try {
-
+        const idForUpdate = request.params.id;
+        const dataForUpdate = request.body;
+        await empleadoModel.findByIdAndUpdate(idForUpdate, dataForUpdate);
+        return response.status(200).json({
+            "mensaje": "Empleado actualizado exitósamente"
+        });
     } catch (error) {
         return response.status(400).json({
-            "mensaje": "Ocurrió un error al crear Empleado",
+            "mensaje": "Ocurrió un error al Actualizar Empleado",
             "error": error.message || error
         })
     }
