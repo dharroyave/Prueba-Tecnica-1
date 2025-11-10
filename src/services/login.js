@@ -9,9 +9,9 @@ export const login = async (request, response) => {
             email: emailLogin
         });
 
-        console.log("empleado encontrado", userFound);
+        console.log("empleado encontrado", empleadoFound);
 
-        if (!userFound) {
+        if (!empleadoFound) {
             return response.status(404).json({
                 "mensaje": "El empleado no existe, regístrelo por favor"
             });

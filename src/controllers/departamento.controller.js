@@ -3,6 +3,10 @@ import { departamentoModel } from "../models/departamento.js";
 // 1. Método POST
 export const postDepartamento = async (request, response) => {
     try {
+        const newDepartamento ={
+            ...request.body
+        };
+
         await departamentoModel.create(newDepartamento);
         return response.status(201).json({
             "mensaje": "Departamento creado exitosamente"

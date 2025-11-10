@@ -6,7 +6,7 @@ import { auth } from "../middleware/auth.js";
 export const departamentoRouter = express.Router();
 
 // Ruta para el POST
-departamentoRouter.post("/crear", auth("admin"), upload.single("image"), postDepartamento);
+departamentoRouter.post("/crear", auth("admin"), postDepartamento);
 
 // Ruta para el GET
 departamentoRouter.get("/mostrar", getAllDepartamento);
